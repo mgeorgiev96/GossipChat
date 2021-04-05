@@ -8,7 +8,7 @@ import './css/animate.css'
 import './css/media.css'
 
 function App() {
-
+  console.log(process.env)
   return (
     <Router>
       <div className='App'>
