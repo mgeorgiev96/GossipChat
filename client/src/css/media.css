@@ -1,0 +1,716 @@
+@media all and (max-width:500px){
+ /*Login Page*/
+ .login_container{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    width: 85%;
+    margin: 2% auto;
+    border-radius: 10px;
+    font-family: 'Open Sans', sans-serif;
+    height: auto;
+  }
+  .animateScreen{
+    transform: translateX(0);
+  }
+  .animateScreen1{
+    transform: translateX(0);
+  }
+  .animateScreen2{
+    transform: translateX(0);
+  }
+  .google_button{
+    width: 80%;
+  }
+
+  /*Chats  Page*/
+
+  .chat_container{
+    height: 145vh;
+    overflow: auto;
+  }
+  .chat_container .chat{
+    width: 92%;
+    height: auto;
+    background: white;
+    top: 2%;
+    left: 3.5%;
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 1rem;
+    border: 1px solid lightgray;
+    margin-top: 10px;
+  }
+  .chat_window{
+  height: 70vh;
+  width: 100%;
+}
+.drawer_container{
+    height: 65vh;
+    border-bottom: 1px solid lightgray;
+}
+
+  .profile_summary .profile_img{
+    width: 90px;
+    height: 90px;
+
+  }
+  .profile_summary a{
+    margin-top: 25px;
+  }
+  .profile_summary h3{
+    font-size: 0.8rem;
+  }
+  .drawer_container .profile_summary{
+    height: 45%;
+  }
+
+  .chat_window .controls{
+    height: 14%;
+  }
+
+  .chat_window .controls .MuiTextField-root{
+    width: 68%;
+  }
+
+  .chat_window .controls .chat_icons{
+    width: 32%;
+  }
+  .chat_icons i{
+    font-size: 0.8rem;
+    line-height: 1rem;
+  }
+
+  .connection_container h5{
+    margin-bottom: 25px;
+  }
+  .connection_container span{
+    font-size: 0.6rem;
+    bottom: 6px;
+  }
+
+  .connection_container .user_chat .group_options{
+    display: flex;
+    position: absolute;
+    bottom: 1px;
+    left: 20px;
+  }
+  .connection_container .user_chat .group_options i{
+     font-size: 0.8rem;
+  }
+  .group_chats{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  .group_chats li{
+    padding: 2px 0 2px 0;
+  }
+
+  .friend_search_container{
+    width: 90%;
+    left: 5%;
+    top: 20%;
+  }
+  .user_sender{
+    font-size: 0.7rem;
+  }
+  .user_receiver{
+    font-size: 0.7rem;
+  }
+  .user_sender span{
+    padding: 8px 10px;
+    max-width: 200px;
+  }
+  .user_receiver span{
+    padding: 8px 10px;
+    max-width: 200px;
+  }
+  .user_sender div{
+    width: 85px;
+    height: 85px;
+  }
+  .user_receiver div{
+    width: 85px;
+    height: 85px;
+  }
+
+  .user_receiver p{
+    padding: 2px;
+    border-radius: 15px;
+    background-color: white;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    float: right;
+  }
+  
+  .user_receiver a{
+    padding: 10px;
+    border-radius: 15px;
+  }
+  .drawer_container .control_tabs button::after{
+    top: -1px;
+    font-size: 0.6rem;
+  }
+  .drawer_container .control_tabs button{
+    font-size: 0.9rem;
+  }
+  .friends_container .fa-comment-dots,.fa-user{
+    font-size: 1rem;
+  }
+  .friends_container img {
+    width: 20px;
+    height: 20px;
+  }
+  .group_chats li .options_c i{
+    margin-top: 1px;
+  }
+  .friends_container h4{
+    font-size: 0.8rem;
+  }
+  .friends_container h4 .fa-plus-circle{
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+  }
+
+  /*Profile  Page*/
+  .profile_container{
+    height: 166vh;
+  }
+  .profile_section{
+    height: auto;
+    width:90%;
+    left: 5%;
+    grid-template-columns: repeat(1,1fr);
+  }
+  .profile_content{
+    width: 100%;
+    height: 60vh;
+  }
+  .profile_drawer .profile_image{
+    width: 85px;
+    height: 85px;
+    margin-top: 30%;
+  }
+  .profile_drawer h3{
+    font-size: 0.8rem;
+  }
+
+  .profile_drawer .profile_image label .MuiButtonBase-root{
+    bottom: -14%;
+    right: 0;
+    transform: scale(0.7);
+  }
+  
+  .profile_drawer .profile_image input{
+    bottom: -10%;
+    right: 5%;
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile_drawer .background_image .uploadIcon input{
+    width: 32px;
+    height: 30px;;
+  }
+
+  .profile_drawer .background_image label .MuiButtonBase-root{
+    transform: scale(0.7);
+    margin: -3px 0 0 -3px;
+  }
+  .user_info,.personal_info{
+    transform: scale(0.8);
+  }
+  .profile_content_header div button{
+    margin-top: 5px;
+    font-size: 1rem;
+  }
+  .profile_content_header h2{
+    font-size: 0.9rem;
+  }
+  .profile_content .post_container{
+    height: 70vh;
+  }
+  .post_modal{
+    width: 90%;
+    left: 2%;
+    top: 2%;
+  }
+  .image_preview{
+    height: 200px;
+  }
+  .profile_content .post_container .post{
+    width: 90%;
+    height: 55%;
+    overflow: auto;
+    background-color: white;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .post_description h3 {
+    font-size: 0.9rem;
+  }
+
+  .post_description h3 span{
+    font-size: 0.7rem;
+  }
+
+  .emoji_container {
+    width: 60vw;
+    top: -34vh;
+    right: -5vw;
+  }
+  .profile_content .post_image{
+    margin: 5px 5% 0 10%;
+  }
+  .post_comments_field i{
+    line-height: 3rem;
+    font-size: 0.8rem;
+  }
+  .post_description p{
+    font-size: 0.8rem;
+  }
+  .post_controls i{
+    font-size: 0.7rem;
+  }
+  .post_comments_field .MuiFormControl-root label{
+    font-size: 0.8rem;
+  }
+  .post_comments_field .MuiFormControl-root input{
+    font-size: 0.8rem;
+  }
+
+}
+
+
+ @media all and (max-width:768px) and (min-width:501px){
+  /*Login Page*/
+  .login_container{
+     display: grid;
+     grid-template-columns: repeat(1,1fr);
+     width: 65%;
+     margin: 5% auto;
+     border-radius: 10px;
+     font-family: 'Open Sans', sans-serif;
+     height: auto;
+   }
+   .animateScreen{
+     transform: translateX(0);
+   }
+   .animateScreen1{
+     transform: translateX(0);
+   }
+   .animateScreen2{
+     transform: translateX(0);
+   }
+   .google_button{
+     width: 60%;
+   }
+ 
+   /*Chats  Page*/
+ 
+   .chat_container{
+     height: 145vh;
+     overflow: auto;
+   }
+   .chat_container .chat{
+     width: 65%;
+     height: auto;
+     background: white;
+     top: 2%;
+     left: 17.5%;
+     grid-template-columns: repeat(1,1fr);
+     grid-gap: 1rem;
+     border: 1px solid lightgray;
+     margin-top: 10px;
+   }
+   .chat_window{
+   height: 70vh;
+   width: 100%;
+ }
+ .drawer_container{
+     height: 65vh;
+     border-bottom: 1px solid lightgray;
+ }
+ 
+   .profile_summary .profile_img{
+     width: 120px;
+     height: 120px;
+ 
+   }
+   .profile_summary a{
+     margin-top: 25px;
+   }
+   .profile_summary h3{
+     font-size: 0.8rem;
+   }
+   .drawer_container .profile_summary{
+     height: 45%;
+   }
+ 
+   .chat_window .controls{
+     height: 14%;
+   }
+ 
+   .chat_window .controls .MuiTextField-root{
+     width: 68%;
+   }
+ 
+   .chat_window .controls .chat_icons{
+     width: 32%;
+   }
+   .chat_icons i{
+     font-size: 0.8rem;
+     line-height: 1rem;
+   }
+ 
+   .connection_container h5{
+     margin-bottom: 25px;
+   }
+   .connection_container span{
+     font-size: 0.6rem;
+     bottom: 6px;
+   }
+ 
+   .connection_container .user_chat .group_options{
+     display: flex;
+     position: absolute;
+     bottom: 1px;
+     left: 20px;
+   }
+   .connection_container .user_chat .group_options i{
+      font-size: 0.8rem;
+   }
+   .group_chats{
+     list-style: none;
+     padding: 0;
+     margin: 0;
+     width: 100%;
+     overflow: auto;
+     overflow-x: hidden;
+   }
+ 
+   .group_chats li{
+     padding: 2px 0 2px 0;
+   }
+ 
+   .friend_search_container{
+     width: 90%;
+     left: 5%;
+     top: 20%;
+   }
+   .user_sender{
+     font-size: 0.7rem;
+   }
+   .user_receiver{
+     font-size: 0.7rem;
+   }
+   .user_sender span{
+     padding: 8px 10px;
+     max-width: 200px;
+   }
+   .user_receiver span{
+     padding: 8px 10px;
+     max-width: 200px;
+   }
+   .user_sender div{
+     width: 85px;
+     height: 85px;
+   }
+   .user_receiver div{
+     width: 85px;
+     height: 85px;
+   }
+ 
+   .user_receiver p{
+     padding: 2px;
+     border-radius: 15px;
+     background-color: white;
+     display: inline-block;
+     text-decoration: none;
+     color: black;
+     float: right;
+   }
+   
+   .user_receiver a{
+     padding: 10px;
+     border-radius: 15px;
+   }
+   .drawer_container .control_tabs button::after{
+     top: -1px;
+     font-size: 0.6rem;
+   }
+   .drawer_container .control_tabs button{
+     font-size: 0.9rem;
+   }
+   .friends_container .fa-comment-dots,.fa-user{
+     font-size: 1rem;
+   }
+   .friends_container img {
+     width: 20px;
+     height: 20px;
+   }
+   .group_chats li .options_c i{
+     margin-top: 1px;
+   }
+   .friends_container h4{
+     font-size: 0.8rem;
+   }
+   .friends_container h4 .fa-plus-circle{
+     margin-bottom: 10px;
+     font-size: 0.8rem;
+   }
+ 
+   /*Profile  Page*/
+   .profile_container{
+     height: 166vh;
+   }
+   .profile_section{
+     height: auto;
+     width:90%;
+     left: 5%;
+     grid-template-columns: repeat(1,1fr);
+   }
+   .profile_content{
+     width: 100%;
+     height: 60vh;
+   }
+   .profile_drawer .profile_image{
+     width: 120px;
+     height: 120px;
+     margin-top: 16%;
+   }
+   .profile_drawer h3{
+     font-size: 0.8rem;
+   }
+ 
+   .profile_drawer .profile_image label .MuiButtonBase-root{
+     bottom: -14%;
+     right: 0;
+     transform: scale(0.7);
+   }
+   
+   .profile_drawer .profile_image input{
+     bottom: -10%;
+     right: 5%;
+     width: 30px;
+     height: 30px;
+   }
+ 
+   .profile_drawer .background_image .uploadIcon input{
+     width: 32px;
+     height: 30px;;
+   }
+ 
+   .profile_drawer .background_image label .MuiButtonBase-root{
+     transform: scale(0.7);
+     margin: -3px 0 0 -3px;
+   }
+   .profile_content_header div button{
+     margin-top: 5px;
+     font-size: 1rem;
+   }
+   .profile_content_header h2{
+     font-size: 0.9rem;
+   }
+   .profile_content .post_container{
+     height: 70vh;
+   }
+   .post_modal{
+     width: 90%;
+     left: 2%;
+     top: 2%;
+   }
+   .image_preview{
+     height: 200px;
+   }
+   .profile_content .post_container .post{
+     width: 90%;
+     height: 55%;
+     overflow: auto;
+     background-color: white;
+     margin: 10px auto;
+     padding: 10px;
+     border-radius: 10px;
+   }
+   .post_description h3 {
+     font-size: 0.9rem;
+   }
+ 
+   .post_description h3 span{
+     font-size: 0.7rem;
+   }
+ 
+   .emoji_container {
+     width: 40vw;
+     top: -34vh;
+     right: -3vw;
+   }
+   .profile_content .post_image{
+     margin: 5px 6% 0 9%;
+   }
+   .post_comments_field i{
+     line-height: 3rem;
+     font-size: 0.8rem;
+   }
+   .post_description p{
+     font-size: 0.8rem;
+   }
+   .post_controls i{
+     font-size: 0.7rem;
+   }
+   .post_comments_field .MuiFormControl-root label{
+     font-size: 0.8rem;
+   }
+   .post_comments_field .MuiFormControl-root input{
+     font-size: 0.8rem;
+   }
+ 
+ }
+
+ @media all and (max-width:1024px) and (min-width:770px){
+  .login_container{
+    width: 75%;
+    margin: 7.5% auto;
+  }
+  .google_button{
+    width: 70%;
+  }
+
+  /*gere*/
+  .chat_container .chat{
+    width: 90%;
+    left: 5%;
+  }
+  .chat_window{
+    height: 80vh;
+  }
+  .profile_summary .profile_img{
+    width: 120px;
+    height: 120px;
+  }
+  .user_sender span{
+    padding: 8px 10px;
+    max-width: 165px;
+  }
+  .user_receiver span{
+    padding: 8px 10px;
+    max-width: 165px;
+  }
+  .user_sender{
+    font-size: 0.7rem;
+  }
+  .user_receiver{
+    font-size:0.7rem;
+  }
+  .user_sender div{
+    width: 95px;
+    height: 95px;
+  }
+  .user_receiver div{
+    width: 95px;
+    height: 95px;
+  }
+
+  .user_receiver a{
+    padding: 10px;
+    border-radius: 15px;
+  }
+  .friends_container h4{
+    font-size: 0.9rem;
+  }
+  .friends_container h4 .fa-plus-circle{
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  .profile_summary h3{
+    font-size: 0.9rem;
+  }
+  .group_chats li .options_c i{
+    margin-bottom: 16px;
+  }
+
+  .emoji_container {
+    width: 21vw;
+    top: -37.5vh;
+    right: -2vw;
+  }
+  .connection_container .user_chat div i{
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  .connection_container .user_chat{
+    margin-bottom: 5px;
+  }
+  .connection_container span{
+    font-size: 0.7rem;
+    bottom: 5px;
+  }
+  .connection_container .user_chat h3{
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+
+  .profile_section{
+    height: 85%;
+    width:90%;
+    left: 5%;
+    top: 4%;
+  }
+
+  .profile_drawer .profile_image{
+    width: 100px;
+    height: 100px;
+  }
+  .profile_drawer h3{
+    font-size: 0.8rem;
+  }
+
+  .profile_drawer .profile_image label .MuiButtonBase-root{
+    bottom: -14%;
+    right: 0;
+    transform: scale(0.7);
+  }
+  
+  .profile_drawer .profile_image input{
+    bottom: -10%;
+    right: 5%;
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile_drawer .background_image .uploadIcon input{
+    width: 32px;
+    height: 30px;;
+  }
+
+  .profile_drawer .background_image label .MuiButtonBase-root{
+    transform: scale(0.7);
+    margin: -3px 0 0 -3px;
+  }
+  .profile_content_header div button{
+    margin-top: 5px;
+    font-size: 1rem;
+  }
+  .profile_content_header h2{
+    font-size: 0.9rem;
+  }
+  .friend_search_container{
+    width: 42%;
+  }
+  .user_info,.personal_info{
+    transform: scale(0.8);
+  }
+  .post_modal{
+    width: 50%;
+    left: 25%;
+    top:5%;
+  }
+  .image_preview{
+    height: 200px;
+  }
+}

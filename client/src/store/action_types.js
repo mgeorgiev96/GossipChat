@@ -1,0 +1,7 @@
+export const USER = 'USER'
+export const USER_PROFILE = 'USER_PROFILE'
+export const USER_CHAT = 'USER_CHAT'
+export const SEARCH_CRITERIA = 'SEARCH_CRITERIA'
+export const CHAT = 'CHAT'
+export const VIDEO_CHAT = 'VIDEO_CHAT'
+export const SWITCH_CHATS = 'SWITCH_CHATS'
