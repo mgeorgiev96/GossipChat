@@ -6,6 +6,7 @@ import ChatRoom from './ChatRoom'
 import Profile from './Profile/Profile'
 import './css/animate.css'
 import './css/media.css'
+import {} from 'dotenv/config'
 
 function App() {
   console.log(process.env)
