@@ -9,8 +9,6 @@ import './css/media.css'
 import {} from 'dotenv/config'
 
 function App() {
-  console.log(process.env)
-  console.log(process.env.REACT_APP_API_KEY)
   return (
     <Router>
       <div className='App'>
