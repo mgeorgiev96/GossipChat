@@ -25,7 +25,6 @@ function CreateGroupChat(props) {
 
     if(e.keyCode === 13 && filter.length === 0){
       axios.post('/create-groupChat',{name}).then(res=>{
-          console.log(res.data)
         props.getUserInfo(res.data)
       })
     }else if(filter.length > 0){
