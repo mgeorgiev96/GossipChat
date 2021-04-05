@@ -236,6 +236,12 @@ h3 .fa-circle{
   margin-left: 20px;
   margin-bottom: 10px;
 }
+.connection_container .user_chat .group_options{
+  display: flex;
+  position: absolute;
+  bottom: 1px;
+  left: 20px;
+}
 .connection_container h5{
   margin-bottom: 20px;
 }
