@@ -713,4 +713,10 @@
   .image_preview{
     height: 200px;
   }
+  .connection_container .user_chat .group_options{
+    display: flex;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+  }
 }
