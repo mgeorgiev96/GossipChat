@@ -49,7 +49,7 @@ passport.use(new GoogleStrategy({
                 active: false,
                 lastActive: '',
                 groupChats: []
-            }).save().catch(err=>console.log(err))
+            }).save().then(()=>done(null,user)).catch(err=>console.log(err))
         }
     }).catch(err=>console.log(err))
 }))
