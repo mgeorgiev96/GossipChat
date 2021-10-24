@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt')
 const User =  require('../models/model')
 const uniqid = require('uniqid')
 const passport = require('passport')
+const suggestionData =  require("../data/suggestions")
+const friendsData = require("../data/friends")
 
 
 const userAuth = (req,res,next)=>{
@@ -13,6 +15,7 @@ const userAuth = (req,res,next)=>{
         next()
     }
 }
+
 
 router.get('/profile',userAuth,(req,res)=>{
     res.sendFile(path.resolve(__dirname,'../public/index.html'))
@@ -31,6 +34,7 @@ router.post('/update-background',(req,res)=>{
                 username: user.username,
                 name: user.name,
                 friends: user.friends,
+                suggestions: user.suggestions,
                 posts: user.posts,
                 personalInfo: user.personalInfo,
                 profileImage: user.profileImage,
@@ -54,6 +58,7 @@ router.post('/update-profile',(req,res)=>{
                 username: user.username,
                 name: user.name,
                 friends: user.friends,
+                suggestions: user.suggestions,
                 posts: user.posts,
                 personalInfo: user.personalInfo,
                 profileImage: user.profileImage,
@@ -74,6 +79,7 @@ router.post('/profile-info',(req,res)=>{
             username: user.username,
             name: user.name,
             friends: user.friends,
+            suggestions: user.suggestions,
             posts: user.posts,
             personalInfo: user.personalInfo,
             profileImage: user.profileImage,
@@ -91,6 +97,7 @@ router.get('/info',(req,res)=>{
             username: user.username,
             name: user.name,
             friends: user.friends,
+            suggestions: user.suggestions,
             posts: user.posts,
             personalInfo: user.personalInfo,
             profileImage: user.profileImage,
@@ -129,6 +136,7 @@ router.post('/login',(req,res)=>{
                             username: user.username,
                             name: user.name,
                             friends: user.friends,
+                            suggestions: user.suggestions,
                             posts: user.posts,
                             personalInfo: user.personalInfo,
                             profileImage: user.profileImage,
@@ -160,13 +168,8 @@ router.post('/create-account',(req,res)=>{
                     username: req.body.username,
                     password: hash,
                     name: req.body.name,
-                    friends: [
-                        {
-                            username:"test@gmail.com",
-                            name:"Test Test",
-                            image:""
-                        }
-                    ],
+                    suggestions: suggestionData,
+                    friends: friendsData,
                     posts: [],
                     personalInfo: {
                         date: '--/--/--',
@@ -206,6 +209,7 @@ router.post('/save-personal',(req,res)=>{
                     username: userA.username,
                     name: userA.name,
                     friends: userA.friends,
+                    suggestions: userA.suggestions,
                     posts: userA.posts,
                     personalInfo: userA.personalInfo,
                     profileImage: userA.profileImage,
@@ -270,6 +274,7 @@ router.post('/handle-notification',(req,res)=>{
                                     username: i.username,
                                     name: i.name,
                                     friends: i.friends,
+                                    suggestions: i.suggestions,
                                     posts: i.posts,
                                     personalInfo: i.personalInfo,
                                     profileImage: i.profileImage,
@@ -295,6 +300,7 @@ router.post('/handle-notification',(req,res)=>{
                         username: i.username,
                         name: i.name,
                         friends: i.friends,
+                        suggestions: i.suggestions,
                         posts: i.posts,
                         personalInfo: i.personalInfo,
                         profileImage: i.profileImage,
@@ -317,6 +323,7 @@ router.post('/handle-notification',(req,res)=>{
                     username: user.username,
                     name: user.name,
                     friends: user.friends,
+                    suggestions: user.suggestions,
                     posts: user.posts,
                     personalInfo: user.personalInfo,
                     profileImage: user.profileImage,
@@ -338,13 +345,14 @@ router.post('/create-post',(req,res)=>{
     User.update({username:req.body.username},{
         $push: {posts: {id: uniqid(),
             postTitle: req.body.postTitle,
-            postDesc: req.body.postDesc, image: req.body.image ? req.body.image : '' ,comments: [],likes:[],date:req.body.date}}
+            postDesc: req.body.postDesc, image: req.body.image ? req.body.image : '' ,comments: [],likes:[],date:req.body.date,userImage:req.body.userImage,username:req.body.username,name:req.body.name}}
     }).then(()=>{
         User.findOne({username:req.body.username}).then(user=>{
             req.session.user = {
                 username: user.username,
                 name: user.name,
                 friends: user.friends,
+                suggestions: user.suggestions,
                 posts: user.posts,
                 personalInfo: user.personalInfo,
                 profileImage: user.profileImage,
@@ -366,14 +374,14 @@ router.post('/leave-comment',(req,res)=>{
          user.posts.map(p=>p.id === req.body.postID ? post = p : '')
          post.comments.push({comment: req.body.comment,image:req.body.image,name:req.body.name})
     }).then(()=>{
-        User.update({username:req.body.receiver},{
+        User.updateOne({username:req.body.receiver},{
             $pull: {posts:{id:req.body.postID}}
         }).then(()=>{
-            User.update({username:req.body.receiver},{
+            User.updateOne({username:req.body.receiver},{
                 $push: {posts:post}
             }).then(()=>{
                 if(req.body.receiver !== req.body.sender){
-                    User.update({username:req.body.receiver},{
+                    User.updateOne({username:req.body.receiver},{
                         $push: {notifications:{id:uniqid(),notif:`${req.body.name} commented your post ${post.postTitle}.`}}
                     }).catch(err=>console.log(err))
                 }
@@ -383,6 +391,7 @@ router.post('/leave-comment',(req,res)=>{
                         username: userA.username,
                         name: userA.name,
                         friends: userA.friends,
+                        suggestions: userA.suggestions,
                         posts: userA.posts,
                         personalInfo: userA.personalInfo,
                         profileImage: userA.profileImage,
@@ -431,6 +440,7 @@ router.post('/create-groupChat',(req,res)=>{
                 username: user.username,
                 name: user.name,
                 friends: user.friends,
+                suggestions: user.suggestions,
                 posts: user.posts,
                 personalInfo: user.personalInfo,
                 profileImage: user.profileImage,

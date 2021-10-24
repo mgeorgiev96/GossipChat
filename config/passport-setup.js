@@ -1,6 +1,8 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const User = require('../models/model')
+const friendsData  = require('../data/friends')
+const suggestionsData = require("../data/suggestions")
 
 passport.serializeUser((user,done)=>{
     done(null,user.id)
@@ -27,13 +29,8 @@ passport.use(new GoogleStrategy({
                 username: profile._json.email,
                 password: profile.id,
                 name: profile._json.name,
-                friends: [
-                    {
-                        username:"test@gmail.com",
-                        name:"Test Test",
-                        image:""
-                    }
-                ],
+                suggestions: suggestionsData,
+                friends: friendsData,
                 posts: [],
                 personalInfo: {
                     date: '--/--/--',
@@ -43,7 +40,7 @@ passport.use(new GoogleStrategy({
                     prof: 'Profession',
                     email: 'Email'
                 },
-                profileImage: '',
+                profileImage: profile._json.picture,
                 backgroundImage: '',
                 notifications: [],
                 active: false,

@@ -4,19 +4,25 @@ import ChatWindow from './Chat/ChatWindow'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import * as ACTIONS from './store/actions'
+import Friends from './ChatDrawer/Friends'
+import GroupChats from './ChatDrawer/GroupChats'
+import ProfileContent from './Profile/ProfileContent'
+import Navigation from './ChatDrawer/Navigation'
 
 
 function ChatRoom(props) {
-    useEffect(()=>{
-        axios.get('/info').then(res=>{
-            props.getUserInfo(res.data)
-        })
-    },[])
+
     return (
         <div className='chat_container'>
+            <Navigation/>
             <div className='chat'>
                 <ChatDrawer/>
-                <ChatWindow/>
+                <ProfileContent/>
+                <div className='friends_container'>
+                    <Friends/>
+                    <GroupChats/>
+                    <ChatWindow/>
+                </div>
             </div>
         </div>
     )

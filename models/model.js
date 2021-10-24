@@ -13,6 +13,7 @@ const User = new Schema({
     },
     name: String,
     friends: Array,
+    suggestions: Array,
     groupChats: [],
     posts: Array,
     personalInfo: Object,

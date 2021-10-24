@@ -6,8 +6,8 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import uuid from 'uuid/v4'
 import axios from 'axios'
+import uniqid from 'uniqid'
 
 
 
@@ -46,7 +46,7 @@ function GroupChatInfo(props) {
                     </ListItem>
         })():''}
         {props.chat.currentChat.users ? props.chat.currentChat.users.map(user=>{
-          return  <ListItem key={uuid()}>
+          return  <ListItem key={uniqid()}>
                       <ListItemText style={{'margin':'0 20px'}} primary={user.name} />
                       <ListItemIcon>
                           {props.chat.currentChat.maker.email === props.chat.user.username || props.chat.user.username  === user.username ? <i onClick={()=>removeUser(props.chat.currentChat.maker.email,user.username,props.chat.currentChat.name)} className="fas fa-times-circle"></i> : ''}

@@ -9,6 +9,17 @@
     font-family: 'Open Sans', sans-serif;
     height: auto;
   }
+
+  .post-container .single-post {
+    width: 98%;
+    margin: 1% 0;
+    display: flex;
+    flex-flow: column;
+    border: 1px solid lightgray;}
+    .post-container .single-post .post-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; }
   .animateScreen{
     transform: translateX(0);
   }
@@ -29,13 +40,11 @@
     overflow: auto;
   }
   .chat_container .chat{
-    width: 92%;
+    width: 100%;
+    grid-template-columns: 0.2fr 8fr 6fr;
     height: auto;
-    background: white;
     top: 2%;
     left: 3.5%;
-    grid-template-columns: repeat(1,1fr);
-    grid-gap: 1rem;
     border: 1px solid lightgray;
     margin-top: 10px;
   }
@@ -188,7 +197,6 @@
   }
   .profile_content{
     width: 100%;
-    height: 60vh;
   }
   .profile_drawer .profile_image{
     width: 85px;
@@ -232,7 +240,7 @@
     font-size: 0.9rem;
   }
   .profile_content .post_container{
-    height: 70vh;
+    height: 100vh;
   }
   .post_modal{
     width: 90%;
@@ -318,15 +326,20 @@
      overflow: auto;
    }
    .chat_container .chat{
-     width: 65%;
+     width: 100%;
+     grid-template-columns: 0.2fr 8fr 6fr;
      height: auto;
-     background: white;
-     top: 2%;
-     left: 17.5%;
-     grid-template-columns: repeat(1,1fr);
-     grid-gap: 1rem;
      border: 1px solid lightgray;
      margin-top: 10px;
+   }
+   .navigation-container{
+    justify-content: center !important;
+   }
+   .navigation-container .right-side {
+     display: none;
+   }
+   .logo-sign{
+     display: none;
    }
    .chat_window{
    height: 70vh;
@@ -477,7 +490,6 @@
    }
    .profile_content{
      width: 100%;
-     height: 60vh;
    }
    .profile_drawer .profile_image{
      width: 120px;
@@ -518,7 +530,7 @@
      font-size: 0.9rem;
    }
    .profile_content .post_container{
-     height: 70vh;
+     height: 100vh;
    }
    .post_modal{
      width: 90%;
@@ -583,8 +595,8 @@
 
   /*gere*/
   .chat_container .chat{
-    width: 90%;
-    left: 5%;
+    width: 100%;
+    grid-template-columns: 0.2fr 8fr 6fr;
   }
   .chat_window{
     height: 80vh;

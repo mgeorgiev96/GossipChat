@@ -9,6 +9,10 @@ import {connect} from 'react-redux'
 import defProfPic from '../images/defProf.jpg'
 import * as ACTIONS from '../store/actions'
 import axios from 'axios'
+import MailIcon from '@mui/icons-material/Mail';
+import MenuItem from '@mui/material/MenuItem';
+import Badge from '@mui/material/Badge';
+
 
 
 
@@ -48,8 +52,16 @@ function Notification(props) {
   );
 
   return (
-    <div>
-        <i className="fas fa-envelope" onClick={handleOpen}><p>{props.chat.user.notifications ? props.chat.user.notifications.length : ''}</p></i>
+    <div>        
+    <MenuItem onClick={handleOpen}> 
+          <ListItemIcon>
+            <Badge badgeContent={props.chat.user.notifications ? props.chat.user.notifications.length : 0} color="error" style={{marginLeft: "0"}}>
+              <MailIcon style={{color:"grey"}} className="fas fa-envelope"  fontSize="large"></MailIcon>
+            </Badge>
+          </ListItemIcon>
+        <ListItemText>Notifications</ListItemText>
+    </MenuItem>
+      
       <Modal
         open={open}
         onClose={handleClose}

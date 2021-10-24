@@ -17,7 +17,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb' ,extended:false }));
 app.set('view engine','ejs')
 app.use(express.static(path.resolve('./public')))
-app.use(express.static(path.resolve('./static')))
+app.use(express.static(path.resolve("./static")))
 
 
 app.use(cookieSession({

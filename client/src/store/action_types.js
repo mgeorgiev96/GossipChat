@@ -5,3 +5,5 @@ export const SEARCH_CRITERIA = 'SEARCH_CRITERIA'
 export const CHAT = 'CHAT'
 export const VIDEO_CHAT = 'VIDEO_CHAT'
 export const SWITCH_CHATS = 'SWITCH_CHATS'
+export const EXPAND_CHAT = "EXPAND_CHAT"
+export const POST_IMAGE = "POST_IMAGE"

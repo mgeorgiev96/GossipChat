@@ -3,7 +3,6 @@ import Divider from '@material-ui/core/Divider'
 import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
 import {connect} from 'react-redux'
-import moment from 'moment'
 import uniqid from 'uniqid'
 import * as ACTIONS from '../store/actions'
 import $ from 'jquery'
@@ -11,10 +10,13 @@ import firebase from '../store/firebaseInit'
 import 'firebase/firestore'
 import { saveAs } from 'file-saver';
 import Emoji from './Emoji'
-import GroupChatInfo from '../ChatDrawer/GroupChatInfo'
-import AddGroupMember from '../ChatDrawer/AddGroupMember'
 import Spinner from './Spinner'
-
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 
 const firestore = firebase.firestore()
@@ -23,12 +25,18 @@ const arrayUnion = firebase.firestore.FieldValue.arrayUnion
 function ChatWindow(props) {
   const [spinner,setSpinner] = useState(false)
   const [error,setError] = useState(null)
+
+  const expandChat = async ()=>{
+    await props.expandChat()
+    let chatBottom = document.querySelector('.chat_window')
+    chatBottom.scrollTop = chatBottom.scrollHeight
+  }
     const sendMessage = (type,value)=>{
         let sender = props.chat.user ? props.chat.user.username : ''
         let receiver = props.chat.currentChat ? props.chat.currentChat.username : ''
-        let parent = document.querySelector('.message_chat_value')
-        let textMessage = parent.children[1].children[0]
+        let textMessage = document.querySelector('.message_chat_value')
         let conversation = document.querySelector(".conversation_window")
+        console.log(textMessage)
 
         if(sender && receiver && !props.chat.switchChats){
           if(type==='message'){
@@ -202,18 +210,21 @@ function ChatWindow(props) {
       }
 
     return (
-        <div className='chat_window'>
+        <div className='chat_window' style={{width: "30%",height: "45%",display: props.chat.expand ? "flex" : "none"}}>
           {spinner ? <Spinner action='Sending...' /> : ''}
-            <div className='connection_container'>
-                <div className='user_chat'>
-                    <h3>{props.chat.currentChat.name  ? props.chat.currentChat.name.length <= 30 ? props.chat.currentChat.name : props.chat.currentChat.name.substring(0,30) + "...":""}</h3>
-                    <span>{props.chat.currentChat.lastActive ?'Last online: ' + moment(parseInt(props.chat.currentChat.lastActive)).format('LLL') : '' }</span>
-                    <div className='group_options'>
-                      {props.chat.currentChat.maker ? <GroupChatInfo/> : ''}
-                      {props.chat.currentChat.maker && props.chat.currentChat.maker.email === props.chat.user.username ? <AddGroupMember/>:''}
-                    </div>
-                    {error ? <p style={{'color':'red','position':'absolute','bottom':'0','left':'43%'}}>{error}</p> : ''}
+            <div className="chat_header" style={{display:'flex',justifyContent:"space-between",alignItems:'center',color:"black"}}>
+                <List>
+                <ListItem>
+                    <Stack direction="row" spacing={2} style={{display:"flex",alignItems:"center"}}>
+                        <Avatar alt="Remy Sharp" src={props.chat.currentChat.profileImage}  />
+                        <Typography className="user_name" style={{margin:'0 10px',fontWeight:"bold",fontFamily:"Ruda, sans-serif"}}>{props.chat.currentChat.name}</Typography>
+                    </Stack>
+                    </ListItem>
+                </List>
+                <div className="friend_chat_tab" style={{padding: "0 10px"}}>
+                        <CancelIcon className="close_icon" onClick={()=>expandChat()}/>
                 </div>
+                {error ? <p style={{'color':'red','position':'absolute','bottom':'0','left':'43%'}}>{error}</p> : ''}
             </div>
             <div className='conversation_window'>
               {props.chat.chat.map((msg,i)=>{
@@ -297,13 +308,13 @@ function ChatWindow(props) {
             </div>
             <Divider></Divider>
             <div className='controls'>
-                <TextField disabled={spinner? true:false} onKeyDown={(e)=>e.keyCode === 13 ? sendMessage('message','') : ''} className='message_chat_value' id="outlined-basic" label="Message..." variant="outlined" />
+                <TextField disabled={spinner? true:false} onKeyDown={(e)=>e.keyCode === 13 ? sendMessage('message','') : ''} inputProps={{className:"message_chat_value"}} id="outlined-basic" label="Message..." variant="outlined" />
                 <div className='chat_icons'>
                 <IconButton disabled={spinner? true:false} aria-label="add">
                     <i onClick={()=>sendMessage('message','')} className="fas fa-reply"></i>
                 </IconButton>
                 <IconButton disabled={spinner? true:false} aria-label="add">
-                    <Emoji/>
+                    <Emoji right="-5%" bottom="100%" location={true}/>
                 </IconButton>
                 <IconButton disabled={spinner? true:false} aria-label="add">
                     <div className='uploadIcon'>
@@ -351,7 +362,8 @@ const mapStateToProps = state=>{
 
 const mapDispatchToProps = dispatch =>{
   return {
-    getChat: (user)=> dispatch(ACTIONS.getChat(user))
+    getChat: (user)=> dispatch(ACTIONS.getChat(user)),
+    expandChat: ()=> dispatch(ACTIONS.expandChat())
   }
 }
 

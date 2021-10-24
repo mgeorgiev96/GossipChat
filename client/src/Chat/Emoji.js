@@ -1,27 +1,29 @@
 import React,{useState} from 'react'
 
-function Emoji() {
+function Emoji(props) {
     const [open,setOpen] = useState(false)
 
-    const handleOpen= (e)=>{
-        let target = e.target
-        if(target.classList.contains('fa-smile-beam')){
-            setOpen(!open)
-        }
-    }
-
     const insertEmoji = (e)=>{
-        let parent = document.querySelector('.message_chat_value')
-        let textMessage = parent.children[1].children[0]
+        console.log("click")
         let target = e.target
-        if(target.classList.contains('emoji')){
-            textMessage.value += target.innerHTML
+        if(target.classList.contains("emoji")){
+            if(props.location){
+                let parent = document.querySelector('.message_chat_value')
+                if(parent){
+                    parent.value += target.innerHTML
+                }
+            }else{
+                let parent = document.querySelector('.post_message_input')
+                if(parent){
+                    parent.value += target.innerHTML
+                }
+            }
         }
     }
 
     return (
-        <i className="fas fa-smile-beam" onClick={handleOpen} style={{'position':"relative"}}>
-             <div onClick={insertEmoji} className="emoji_container" style={{'display': open ? 'grid' :'none'}}>
+        <i className="fas fa-smile-beam" onClick={(e)=> e.target.classList.contains("fa-smile-beam") ? setOpen(!open) : null} style={{position:"relative",fontSize:'1.2rem',alignSelf:"center",margin: "0 5px",color:props.color,cursor:'pointer',marginBottom: props.location ? "5px" : "0"}} style={{'position':"relative"}}>
+             <div onClick={insertEmoji} className="emoji_container" style={{display: open ? 'grid' :'none',right:props.right,bottom:props.bottom}}>
                 <p className="emoji">&#128540;</p>
                 <p className="emoji">&#128512;</p>
                 <p className="emoji">&#128513;</p>

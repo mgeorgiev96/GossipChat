@@ -1,11 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import IconButton from '@material-ui/core/IconButton';
 import {connect} from 'react-redux'
 import uniqid from 'uniqid'
 import defProfImage from '../images/defProf.jpg'
@@ -13,19 +9,24 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 import * as ACTIONS from '../store/actions'
 import firebase from '../store/firebaseInit'
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
+import Friend from './Friend'
+import Suggestions from './Suggestions'
+import SearchBar from './SearchBar'
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
 const firestore = firebase.firestore()
 
 function Friends(props) {
-  const classes = useStyles();
+  const expandChat = async (username)=>{
+    setChatWithUser(username)
+    if(!props.chat.expand){
+      await props.expandChat()
+      let chatBottom = document.querySelector('.chat_window')
+      chatBottom.scrollTop = chatBottom.scrollHeight
+    }
+  }
   const viewUserProfile = (username)=>{
     axios.post('/profile-info',{username}).then(res=>{
       props.getUserProfile(res.data)
@@ -49,29 +50,33 @@ function Friends(props) {
 
 
   return (
-    <>
-    {!props.chat.switchChats ? (()=>{
-      return   <List dense className={classes.root}>
+<Card className="friends-container">
+      <SearchBar/>
+      <h3 className="text-filler">Recent</h3>
+
+      {!props.chat.switchChats ? (()=>{
+      return   <List style={{ width: '100%',borderTop:'1px solid lightgrey'}}>
       {props.chat.user.friends ? props.chat.user.friends.map(friend=>{
-        return  <ListItem key={uniqid()} button style={{'backgroundColor': props.chat.currentChat.username === friend.username ? 'lightgrey' : 'white'}}>
-            <ListItemAvatar>
-              <div>
-                <Link onClick={() => viewUserProfile(friend.username)} to='/user-profile'><img style={{'backgroundColor':'white'}} src={friend.profImage ? friend.profImage : defProfImage}/></Link>
-              </div>
-            </ListItemAvatar>
-            <ListItemText primary={friend.name} />
-            <ListItemSecondaryAction>
-            <IconButton aria-label="chats">
-                <i onClick={()=> setChatWithUser(friend.username) } className="fas fa-comment-dots"></i>
-            </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
+        return <ListItem alignItems="center" key={uniqid()} style={{backgroundColor: props.chat.currentChat.username === friend.username ? 'lightgrey' : "" , width:"100%",borderBottom:"1px solid lightgrey"}}>
+        <ListItemAvatar className="friend_avatar">
+            <Link onClick={() => viewUserProfile(friend.username)} to="/user-profile"><Friend  src={friend.image ? friend.image : defProfImage}/></Link>
+            <Typography className="user_name">{friend.name}</Typography>
+        </ListItemAvatar>
+        <div className="friend_chat_tab">
+          <ChatBubbleRoundedIcon style={{cursor:"pointer"}} onClick={()=>expandChat(friend.username)}/>
+        </div>
+      </ListItem>
+
       }):""}
     </List>
     })():'' }
-    </>
+      <h4 className="text-filler">Suggested Followers</h4>
+      <Suggestions/>
+    </Card>
   );
 }
+
+
 
 const mapStateToProps = state =>{
   return {
@@ -83,7 +88,8 @@ const mapStateToDispatch = dispatch =>{
   return {
     getUserProfile: (user)=> dispatch(ACTIONS.getUserProfile(user)),
     userChat: (user)=> dispatch(ACTIONS.userChat(user)),
-    getChat: (chat)=> dispatch(ACTIONS.getChat(chat))
+    getChat: (chat)=> dispatch(ACTIONS.getChat(chat)),
+    expandChat: (friend)=> dispatch(ACTIONS.expandChat(friend))
   }
 }
 

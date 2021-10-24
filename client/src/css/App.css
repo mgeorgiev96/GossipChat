@@ -4,31 +4,31 @@ body,html{
   margin: 0;
   width: 100vw;
   height: 100vh;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Ruda', sans-serif;
+  overflow: hidden;
 }
 
 .chat_container{
-  background-image: linear-gradient(#1D976C,#93F9B9);
   width: 100vw;
+  margin: 0 auto;
   height: 100vh;
   position: relative;
+  border:1px solid lightgray;
+  border-left: none;
 }
 
 .chat_container .chat{
-  width: 70%;
-  height: auto;
-  background: white;
-  top: 11%;
-  left: 15%;
-  position: absolute;
+  width: 100%;
+  height: 100%;
+
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  border-radius: 5px;
+  grid-template-columns: 1fr 8fr 1.8fr;
   border: 1px solid lightgray;
+  border-left: none;
 }
 
 .drawer_container{
-  height: auto;
+  height: 100%;
   display: flex;
   flex-flow: column;
   border-right: 1px solid lightgrey;
@@ -38,7 +38,7 @@ body,html{
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  height: 40%;
+  height: 100%;
   color: white;
   background: #33443c;
   z-index: 1;
@@ -61,17 +61,19 @@ body,html{
 
 .drawer_container .friends_container{
   display: flex;
-  height: 50%;
+  height: 100%;
   flex-flow: column;
+  z-index: 2;
+  position: relative;
+  border: 1px solid lightgray;
 }
 
 
-.friends_container img {
-  width: 30px;
-  height: 30px;
-  border: 2px solid black;
+.friends_container .friend_avatar img{
+  width: 35px;
+  height: 35px;
+  border: 2px solid lightgray;
   border-radius: 50%;
-  padding: 7px;
 }
 .friends_container .MuiListItemAvatar-root{
   padding: 0;
@@ -84,19 +86,36 @@ body,html{
   font-size: 1.2rem;
   color: black;
 }
-.friends_container .MuiList-root{
-   margin: 0 auto;
-}
+
 h3 .fa-circle{
   font-size: 0.7rem;
   border-radius: 50%;
   border: 2px solid lightgray;
   margin-right: 10px;
 }
-.drawer_container .control_tabs{
+
+.side-navigation {
+  border-radius: 0 !important;
   display: flex;
-  justify-content: space-around;
-  height: 10%;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+  box-shadow: none!important;
+  padding: 10px 30px 0 10px;
+}
+  .side-navigation span {
+    font-weight: bold;
+    font-family: 'Ruda', sans-serif;
+    margin: 10px 5px;
+  }
+.side-navigation a{
+  text-decoration: none;
+  color: inherit!important;
+}
+
+.drawer_container .control_tabs{
+  height: 100%;
+  box-shadow: none!important;
 }
 .drawer_container .control_tabs button{
   font-size: 1.2rem;
@@ -119,10 +138,7 @@ h3 .fa-circle{
   font-size: 0.8rem;
   color: black;
 }
-.drawer_container .control_tabs button:hover::after{
-  opacity: 1;
-  transition: 250ms;
-}
+
 .drawer_container .control_tabs button:nth-child(1)::after{
   content: 'Search';
 }
@@ -157,7 +173,6 @@ h3 .fa-circle{
   height: 350px;
   left: 35%;
   top: 20%;
-  background-color: white;
   position: absolute;
   display: flex;
   flex-flow: column;
@@ -165,22 +180,28 @@ h3 .fa-circle{
   text-align:center;
   border-radius: 10px;
   overflow: auto;
+  background: white;
 }
 
-.friend_search_container i{
-  cursor: pointer;
-  margin: 0 4px;
-}
-.friend_search_container .fa-user-plus:active,.fa-check-circle:active{
-  transform: scale(1.2);
+
+.friend_search_container .fa-check-circle:hover{
+  transform: scale(1.1);
   color: green;
   transition: 200ms;
+  cursor: pointer;
+}
+.user-plus:hover{
+  transform: scale(1.1);
+  color: green;
+  transition: 200ms;
+  cursor: pointer;
 }
 
-.friend_search_container .fa-times-circle:active{
-  transform: scale(1.2);
+.friend_search_container .fa-times-circle:hover{
+  transform: scale(1.1);
   color: red;
   transition: 200ms;
+  cursor: pointer;
 }
 
 
@@ -188,10 +209,18 @@ h3 .fa-circle{
 
 
 .chat_window{
-  height: 78vh;
-  width: 295%;
+  height: 45%;
+  width: 30%;
   display: flex;
   flex-flow: column;
+  position: absolute;
+  right: 1%;
+  bottom: 6.5%;
+  background: white;
+  border: 1px solid lightgrey;
+  padding: 5px;
+  border-radius: 2px;
+  z-index: 5;
 }
 
 
@@ -201,6 +230,7 @@ h3 .fa-circle{
   justify-content: space-between;
   align-items: center;
   position: relative;
+  border-bottom: 1px solid lightgrey;
 }
 
 
@@ -215,11 +245,6 @@ h3 .fa-circle{
   cursor: pointer;
 }
 
-
-.chat_icons label .MuiButtonBase-root{
-  padding: 0;
-  margin: 0;
-}
 
 
 
@@ -245,19 +270,14 @@ h3 .fa-circle{
 .connection_container h5{
   margin-bottom: 20px;
 }
-.connection_container span{
-  color: grey;
-  font-style: italic;
-  font-size: 0.8rem;
-  position: absolute;
-  bottom: 12px;
-}
+
 .chat_window .conversation_window{
   height: 80%;
-  max-width: 100%;
-  background-color: lightgrey;
+  width: 100%;
+
   overflow-y: auto;
   position: relative;
+  z-index: 0;
 }
 
 
@@ -296,14 +316,17 @@ h3 .fa-circle{
 }
 .chat_icons i{
   font-size: 1rem;
-  color: #1D976C;
+  color: black;
 
 }
 .chat_icons button{
-  padding: 5px;
-  color: #1D976C;
+  padding: 0;
   position: relative;
   z-index: 1;
+}
+
+.chat_icons button span{
+  padding: 0;
 }
 
 /*--------------- PROFILE --------------------*/
@@ -314,54 +337,50 @@ h3 .fa-circle{
   height: 100vh;
   padding: 0;
   margin: 0;
-  background-image: linear-gradient(#1D976C,#93F9B9);
+  border: 1px solid red;
 }
 
 .profile_section{
-  background: white;
   height: 85%;
-  width:80%;
-  position: absolute;
-  top: 7.5%;
-  left: 10%;
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
+  width:50%;
   border-radius: 10px;
 }
 
 .profile_content{
-  width: 290%;
-  background: white;
-  height: 100%;
-  border-bottom-right-radius: 10px;
-  position: relative;
   overflow: hidden;
-}
-.profile_content .post_container{
-  height: 85%;
-  overflow: auto;
   width: 100%;
   margin: 0 auto;
+  border: 1px solid lightgray;
+  border-bottom: none;
+  height: 100%;
+}
+.profile_content .post_container{
+  height: 100%;
+  overflow: auto;
+  width: 99%;
+  margin: 0 auto;
   overflow-x: hidden;
+  
+
 }
 
-.profile_content .post_container::-webkit-scrollbar,.friend_search_container ul::-webkit-scrollbar,
-.profile_content .post_container::-webkit-scrollbar-thumb,.friend_search_container ul::-webkit-scrollbar-thumb {
+
+.profile_content .post-content-container::-webkit-scrollbar,.friend_search_container ul::-webkit-scrollbar,
+.profile_content .post-content-container::-webkit-scrollbar-thumb,.friend_search_container ul::-webkit-scrollbar-thumb {
   width: 26px;
   background-clip: padding-box;
   border: 10px solid transparent;
-  background: white;
+  margin: 10px;
 }
 .conversation_window::-webkit-scrollbar,
 .conversation_window::-webkit-scrollbar-thumb{
   width: 26px;
   background-clip: padding-box;
   border: 10px solid transparent;
-  background: white;
 }
 
 
-.profile_content .post_container::-webkit-scrollbar-thumb, .friend_search_container ul::-webkit-scrollbar-thumb {
+.profile_content .post-content-container::-webkit-scrollbar-thumb, .friend_search_container ul::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 0 10px;
 }
 
@@ -369,18 +388,14 @@ h3 .fa-circle{
   box-shadow: inset 0 0 0 10px;
 }
 
-.profile_content .post_container:hover{
-  color: rgba(0, 0, 0, 0.3);
+.profile_content .post-content-container:hover{
+  color: lightgrey;
 }
 
 
 .profile_content .post_container {
-  background: lightgrey;
-  border-radius: 3px;
   overflow: auto;
   color: rgba(0, 0, 0, 0);
-  text-shadow: 0 0 black;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   transition: color .3s ease;
 }
 
@@ -429,22 +444,25 @@ h3 .fa-circle{
 }
 .post_comments_field{
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .post_comments_field div{
   width: 100%;
 }
-
-.post_comments_field i{
-  line-height: 3rem;
-  height: auto;
-  padding: 0;
-  font-size: 1rem;
-  color: black;
+.post_comments_field input{
+  font-family: 'Ruda', sans-serif;
+  padding: 5px 10px;
+}
+.post_comments_field label{
+  font-family: 'Ruda', sans-serif;
+  padding: 5px 10px;
 }
 
 .profile_content .post_container .post::-webkit-scrollbar,
 .profile_content .post_container .post::-webkit-scrollbar-thumb {
   visibility: hidden;
+  border: 1px solid lightgrey;
 }
 .conversation_window::-webkit-scrollbar,
 .conversation_window::-webkit-scrollbar-thumb{
@@ -452,14 +470,6 @@ h3 .fa-circle{
 }
 
 
-.profile_content .post_image{
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 85%;
-  height: 75%;
-  margin: 5px 6% 0 9%;
-}
 .profile_content .post_description i{
   float: left;
   margin: 0 5px 0  0;
@@ -482,46 +492,7 @@ h3 .fa-circle{
   font-weight: normal;
 }
 
-.profile_content_header{
-  height:5%;
-  width: 103.5%;
-  border-bottom: 1px solid lightgrey;
-  padding-bottom: 20px;
-  text-align: center;
-}
-.profile_content_header div{
-  position: absolute;
-  right: 2%;
-  top: 2.5%;
-}
-.profile_content_header div button{
-  color: #1D976C;
-  position: relative;
-}
-.profile_content_header div button::after{
-  content: 'Post';
-  position: absolute;
-  top: -55%;
-  font-size: 0.6rem;
-  width: 200%;
-  color: black;
-  opacity: 0;
-  z-index: 1;
-}
-.profile_content_header div button:hover::after{
-  opacity: 1;
-  transition: 250ms;
-}
 
-.profile_content::before{
-  content: '';
-  position: absolute;
-  background: white;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3%;
-}
 .profile_drawer{
   width: 100%;
   height: 100%;
@@ -574,13 +545,7 @@ h3 .fa-circle{
 .profile_drawer .background_image label svg{
   color: black;
 }
-.profile_drawer .background_image label .MuiButtonBase-root{
-  background: lightgrey;
-  padding: 6px;
-  margin: 5px 0 0 5px;
-  border: 2px solid black;
-  z-index: 1;
-}
+
 
 .profile_drawer .background_image img{
   width: 100%;
@@ -604,12 +569,7 @@ h3 .fa-circle{
   z-index: 1;
 }
 
-.profile_drawer .profile_image label .MuiButtonBase-root{
-  position: absolute;
-  bottom: -8%;
-  right: 5%;
-  z-index: 1;
-}
+
 
 .profile_drawer .profile_image input{
   position: absolute;
@@ -651,14 +611,6 @@ h3 .fa-circle{
   height: auto;
 }
 
-
-.personal_info .MuiAvatar-root{
-  background-image:linear-gradient(#1D976C,#93F9B9);
-}
-
-.user_info .MuiAvatar-root{
-  background-image:linear-gradient(#1D976C,#93F9B9);
-}
 
 .user_info a{
   text-decoration: none;
@@ -887,7 +839,7 @@ h3 .fa-circle{
 }
 .user_receiver span{
   border-radius: 20px;
-  background: white;
+  background: lightgray;
   padding: 10px 15px;
   float: right;
   word-wrap: break-word;
@@ -928,7 +880,7 @@ h3 .fa-circle{
 .user_receiver p{
   padding: 2px;
   border-radius: 15px;
-  background-color: white;
+  background-color: lightgray;
   display: inline-block;
   text-decoration: none;
   color: black;
@@ -938,7 +890,7 @@ h3 .fa-circle{
 .user_receiver a{
   padding: 10px;
   border-radius: 15px;
-  background-color: white;
+  background-color: lightgray;
   display: inline-block;
   text-decoration: none;
   color: black;
@@ -959,12 +911,12 @@ h3 .fa-circle{
   grid-template-columns: repeat(7, 12.5%);
   width: 17vw;
   height: auto;
-  background-color: white;
-  top: -35vh;
-  right: -2vw;
+  border: 1px solid lightgrey;
+  background: white;
   justify-content: center;
   align-items: center;
   padding-top: 10px;
+  z-index: 5;
 }
 .group_chats{
   list-style: none;
@@ -994,4 +946,233 @@ h3 .fa-circle{
 }
 
 
+.submit-post-container {
+  display: grid;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+  .submit-post-container button {
+    margin: 0 20px; }
+  .submit-post-container .post_options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    position: relative;
 
+  }
+    .submit-post-container .post_options .option_icon {
+      cursor: pointer;
+      margin-top: 10px;
+  }
+      .input_file {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 200px;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0; }
+.post_close {
+            cursor: pointer;
+            transition: 200ms; }
+            .post_close:hover {
+              color: red;
+transform: scale(1.075);
+}
+
+.navigation-container {
+  display: flex !important;
+  width: 99.5vw !important;
+  margin: 0 auto;
+  justify-content: space-between !important;
+  align-items: center;
+  box-shadow: none!important;
+  
+  border-top: none; }
+  .navigation-container .right-side {
+    display: flex;
+    font-family: 'Ruda', sans-serif;
+    align-items: center;
+  justify-content: center;}
+    .navigation-container .right-side p {
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.2rem; 
+}
+.logo-sign {
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Ruda', sans-serif;
+  text-align: center;
+  align-items: center; }
+  .logo-sign .MuiAvatar-root {
+    margin: 0 20px; 
+}
+
+.nav-tab {
+  color: none;
+  width: 50px;
+  height: 30px;
+  padding: 0 !important; }
+  .nav-tab:visited {
+    color: grey !important; 
+}
+
+.friends-container{border-left: 1px solid lightgray;}
+.friends-container, .info-container {
+  padding-top: 10px;
+  border-radius: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post_image {
+  z-index: 3;
+  width: 300px;
+  height: 160px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  transform: scale(0.8);
+}
+.post_message_input{
+  width: 100%;
+  font-family: 'Ruda', sans-serif!important;
+  padding: 15px 10px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.friend_chat_tab {
+  display: flex;
+  position: relative; 
+  width: 100%;
+ justify-content: flex-end;
+align-items: flex-end;}
+  .friend_avatar .user_name {
+    font-family: 'Ruda', sans-serif;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .itemAvatar {
+    display: flex;
+    align-items: center; }
+    .itemAvatar .user_name {
+      font-family: 'Ruda', sans-serif;
+      font-weight: bold;
+      margin: 10px; 
+}
+.search-field-user {
+  border: 1px solid lightgrey;
+  padding: 5px;
+  border-radius: 4px;
+  background: white;
+}
+
+.post-container .post-content-container {
+  height: 75vh;
+  display: grid;
+  overflow: auto;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 10px;
+  border-top: 1px solid lightgray;
+  border-bottom: none;
+
+}
+.post-container .single-post {
+  width: 75%;
+  margin: 1% 0;
+  display: flex;
+  flex-flow: column;
+border: 1px solid lightgray;}
+  .post-container .single-post .post-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; }
+
+  
+
+  .MuiCollapse-container::-webkit-scrollbar, .chat_window::-webkit-scrollbar,
+    .post-content-container::-webkit-scrollbar-thumb, .MuiCollapse-container::-webkit-scrollbar-thumb, .chat_window::-webkit-scrollbar-thumb {
+      width: 26px;
+      background-clip: padding-box;
+      border: 10px solid transparent;
+    }
+    .MuiCollapse-container::-webkit-scrollbar, .chat_window::-webkit-scrollbar,
+    .MuiCollapse-container::-webkit-scrollbar-thumb, .chat_window::-webkit-scrollbar-thumb {
+      width: 26px;
+      background-clip: padding-box;
+      border: 10px solid transparent; }
+    
+    .MuiCollapse-container::-webkit-scrollbar-thumb, .chat_window::-webkit-scrollbar-thumb {
+      box-shadow: inset 0 0 0 10px; }
+    
+    .MuiCollapse-container::-webkit-scrollbar-thumb, .chat_window::-webkit-scrollbar-thumb {
+      box-shadow: inset 0 0 0 10px;
+    }
+    .chat_container .chat_header {
+      border-bottom: 1px solid lightgrey;
+      height: auto; }
+      .chat_container .chat_header .close_icon {
+        cursor: pointer;
+        transition: 200ms; }
+        .chat_container .chat_header .close_icon:hover {
+          color: red;
+          transform: scale(1.075); }
+
+
+.friend_avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.single_comment{
+  width: 100%;
+  background: none;
+  border-bottom: 1px solid lightgray;
+}
+
+.profile_header{
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Ruda', sans-serif;
+}
+
+.user_profile_back{
+  width: 99.8%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  border:1px solid lightgray;
+  margin: 0 auto;
+}
+
+.user_profile_image{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  
+}

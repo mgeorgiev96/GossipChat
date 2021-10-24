@@ -48,3 +48,16 @@ export const switchChats = (res)=>{
         payload: res
     }
 }
+
+export const expandChat = (friend)=>{
+    return {
+        type: ACTION_TYPES.EXPAND_CHAT,
+    }
+}
+
+export const previewImage = (image)=>{
+    return {
+        type: ACTION_TYPES.POST_IMAGE,
+        payload: image
+    }
+}

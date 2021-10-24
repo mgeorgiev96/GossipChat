@@ -7,7 +7,9 @@ const initialState = {
     searchCriteria: '',
     chat: [],
     videoChat: '',
-    switchChats: false
+    switchChats: false,
+    expand: false,
+    post_image: ""
 }
 const chatReducer = (state = initialState,action)=>{
     switch(action.type){
@@ -15,6 +17,18 @@ const chatReducer = (state = initialState,action)=>{
             return {
                 ...state,
                 user: action.payload
+            }
+        case ACTION_TYPES.POST_IMAGE:
+                return {
+                    ...state,
+                    post_image: action.payload
+    
+        }
+        case ACTION_TYPES.EXPAND_CHAT:
+            
+            return {
+                    ...state,
+                    expand: !state.expand
             }
         case ACTION_TYPES.USER_PROFILE:
             return {
